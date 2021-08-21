@@ -3,6 +3,7 @@ package me.furkan.bookproject.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import me.furkan.bookproject.model.Author;
 import me.furkan.bookproject.model.BookType;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ public class BookDto {
     private String name;
     private String description;
     private BookType type;
-    private String authorName;
+    private Author author;
     private int rateAmount;
     private int pageAmount;
     private int publishingYear;
