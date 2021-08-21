@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","author"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","books"})
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

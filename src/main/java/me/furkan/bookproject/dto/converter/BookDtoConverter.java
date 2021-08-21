@@ -16,9 +16,7 @@ public class BookDtoConverter implements Converter<Book, BookDto> {
 
     @Override
     public BookDto convertToDto(Book entity) {
-        BookDto bookDto = modelMapper.map(entity, BookDto.class);
-        bookDto.setAuthor(entity.getAuthor());
-        return bookDto;
+        return modelMapper.map(entity, BookDto.class);
     }
 
     @Override

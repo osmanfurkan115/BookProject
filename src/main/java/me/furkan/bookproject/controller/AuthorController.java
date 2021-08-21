@@ -34,4 +34,15 @@ public class AuthorController {
     public ResponseEntity<List<AuthorDto>> getAllAuthors() {
         return ResponseEntity.ok(authorService.getAll());
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<AuthorDto> update(@RequestBody AuthorDto authorDto) {
+        return ResponseEntity.ok(authorService.updateAuthor(authorDto));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable int id) {
+        authorService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }

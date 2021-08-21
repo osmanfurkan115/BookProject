@@ -7,6 +7,7 @@ import me.furkan.bookproject.model.Author;
 import me.furkan.bookproject.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +34,14 @@ public class AuthorService {
 
     public List<AuthorDto> getAll() {
         return authorRepository.findAll().stream().map(authorDtoConverter::convertToDto).collect(Collectors.toList());
+    }
+    public void deleteById(int id) {
+        authorRepository.deleteById(id);
+    }
 
+    @Transactional
+    public AuthorDto updateAuthor(AuthorDto authorDto) {
+        final Author author = authorRepository.save(authorDtoConverter.convertToEntity(authorDto));
+        return authorDtoConverter.convertToDto(authorRepository.save(author));
     }
 }

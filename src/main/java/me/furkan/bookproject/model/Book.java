@@ -1,7 +1,5 @@
 package me.furkan.bookproject.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +14,6 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","author"})
 public class Book {
 
     @Id
@@ -35,6 +32,7 @@ public class Book {
     private String description;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private BookType type;
 
     @PositiveOrZero
