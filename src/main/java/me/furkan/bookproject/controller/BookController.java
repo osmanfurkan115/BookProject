@@ -17,7 +17,7 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping("/save")
-    public ResponseEntity<BookDto> save(@Valid @RequestBody Book book) {
+    public ResponseEntity<BookDto> save(@Valid @RequestBody BookDto book) {
         return ResponseEntity.ok(bookService.save(book));
     }
 

@@ -21,8 +21,8 @@ public class AuthorService {
         this.authorDtoConverter = authorDtoConverter;
     }
 
-    public AuthorDto save(Author author) {
-        return authorDtoConverter.convertToDto(authorRepository.save(author));
+    public AuthorDto save(AuthorDto author) {
+        return authorDtoConverter.convertToDto(authorRepository.save(authorDtoConverter.convertToEntity(author)));
     }
 
     public AuthorDto getAuthorByName(String name) {

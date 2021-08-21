@@ -17,7 +17,7 @@ public class AuthorController {
     private final AuthorService authorService;
 
     @PostMapping("/save")
-    public ResponseEntity<AuthorDto> save(@Valid @RequestBody Author author) {
+    public ResponseEntity<AuthorDto> save(@Valid @RequestBody AuthorDto author) {
         return ResponseEntity.ok(authorService.save(author));
     }
 
