@@ -2,7 +2,6 @@ package me.furkan.bookproject.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.furkan.bookproject.dto.BookDto;
-import me.furkan.bookproject.model.Book;
 import me.furkan.bookproject.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +29,11 @@ public class BookController {
         return ResponseEntity.ok(bookService.getBookByName(bookName));
     }
 
+    @GetMapping("/getBookByNameLike/{bookName}")
+    public ResponseEntity<BookDto> getBookByNameLike(@PathVariable String bookName) {
+        return ResponseEntity.ok(bookService.getBookByNameLike(bookName));
+    }
+
     @GetMapping("/getBooks")
     public ResponseEntity<List<BookDto>> getAllBooks() {
         return ResponseEntity.ok(bookService.getAll());
@@ -45,4 +49,5 @@ public class BookController {
         bookService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
 }

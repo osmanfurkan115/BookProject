@@ -5,7 +5,7 @@ import me.furkan.bookproject.dto.BookDto;
 import me.furkan.bookproject.dto.converter.BookDtoConverter;
 import me.furkan.bookproject.exception.BookNotFoundException;
 import me.furkan.bookproject.model.Book;
-import me.furkan.bookproject.repository.BookRepository;
+import me.furkan.bookproject.repository.elasticsearch.BookRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;

@@ -5,10 +5,11 @@ import me.furkan.bookproject.dto.BookDto;
 import me.furkan.bookproject.dto.converter.BookDtoConverter;
 import me.furkan.bookproject.exception.BookNotFoundException;
 import me.furkan.bookproject.model.Book;
-import me.furkan.bookproject.repository.BookRepository;
+import me.furkan.bookproject.repository.elasticsearch.BookRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public class BookService {
 
     public BookDto save(BookDto book) {
         final Book savedBook = bookRepository.save(bookDtoConverter.convertToEntity(book));
-        log.info("Saved book named " + book.getName());
+        log.debug("Saved book named " + book.getName());
         return bookDtoConverter.convertToDto(savedBook);
     }
 
@@ -38,8 +39,14 @@ public class BookService {
         return bookDtoConverter.convertToDto(bookRepository.findByName(name).orElseThrow(() -> new BookNotFoundException("Couldn't find a book with name: " + name)));
     }
 
+    public BookDto getBookByNameLike(String name) {
+        return bookDtoConverter.convertToDto(bookRepository.findByNameLike(name).orElseThrow(() -> new BookNotFoundException("Couldn't find a book with name: " + name)));
+    }
+
     public List<BookDto> getAll() {
-        return bookRepository.findAll().stream().map(bookDtoConverter::convertToDto).collect(Collectors.toList());
+        List<Book> books = new ArrayList<>();
+        bookRepository.findAll().forEach(books::add);
+        return books.stream().map(bookDtoConverter::convertToDto).collect(Collectors.toList());
     }
     public void deleteById(long id) {
         bookRepository.deleteById(id);
