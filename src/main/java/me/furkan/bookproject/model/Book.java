@@ -13,10 +13,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 //@Entity
-@Document(indexName = "book")
+@Document(indexName = "books")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +29,7 @@ public class Book {
 
 //    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    @JoinColumn(name = "author_id", nullable = false)
-    @Field(type = FieldType.Nested)
+//    @Field(type = FieldType.Nested)
     private Author author;
 
     @NotBlank
@@ -36,7 +37,7 @@ public class Book {
     private String name;
 
     @NotBlank
-    @Column(length = 2048)
+    @Size(max = 2048)
     @Field(type = FieldType.Keyword)
     private String description;
 
