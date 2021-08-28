@@ -16,7 +16,6 @@ import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-//@Entity
 @Document(indexName = "books")
 @Data
 @NoArgsConstructor
@@ -24,12 +23,8 @@ import java.time.LocalDateTime;
 public class Book {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "author_id", nullable = false)
-//    @Field(type = FieldType.Nested)
     private Author author;
 
     @NotBlank
