@@ -5,11 +5,10 @@ import me.furkan.bookproject.dto.BookDto;
 import me.furkan.bookproject.dto.converter.BookDtoConverter;
 import me.furkan.bookproject.exception.BookNotFoundException;
 import me.furkan.bookproject.model.Book;
-import me.furkan.bookproject.repository.elasticsearch.BookRepository;
+import me.furkan.bookproject.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,9 +43,7 @@ public class BookService {
     }
 
     public List<BookDto> getAll() {
-        List<Book> books = new ArrayList<>();
-        bookRepository.findAll().forEach(books::add);
-        return books.stream().map(bookDtoConverter::convertToDto).collect(Collectors.toList());
+        return bookRepository.findAll().stream().map(bookDtoConverter::convertToDto).collect(Collectors.toList());
     }
     public void deleteById(long id) {
         bookRepository.deleteById(id);
