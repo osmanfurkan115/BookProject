@@ -5,7 +5,7 @@ COPY .mvn .mvn
 RUN ./mvnw dependency:resolve
 
 COPY src src
-RUN ./mvnw package -DskipTests
+RUN ./mvnw package
 
 FROM openjdk:8
 WORKDIR book-project
