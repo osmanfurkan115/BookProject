@@ -23,7 +23,7 @@ public class Author {
     @NotBlank
     private String name;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Book> books;
 
